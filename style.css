@@ -84,7 +84,7 @@ a:focus {
 /* CABEÇALHO DO SITE: Contém o logotipo      */
 /* ========================================= */
 .site-header {
-    text-align: center; /* Centraliza o logo (mantido, mas flexbox abaixo centraliza melhor) */
+    text-align: center; /* Centraliza o logo */
     padding: 10px 0; /* Padding vertical total do cabeçalho */
     background-color: var(--secondary-color); /* Fundo branco para o cabeçalho */
     box-shadow: 0 2px 8px var(--box-shadow-light); /* Sombra sutil abaixo do cabeçalho */
@@ -104,10 +104,9 @@ a:focus {
 .site-header img {
     max-width: 150px; /* LARGURA MÁXIMA DO LOGO. Reduzido para 150px para melhor encaixe */
     height: auto; /* Mantém a proporção da imagem */
-    /* Não precisa de margens extras aqui, pois o flexbox do .site-header já centraliza */
 }
 
-/* Compensação para o cabeçalho fixo no conteúdo principal (AJUSTADO PARA NOVAS ALTURAS) */
+/* Compensação para o cabeçalho fixo no conteúdo principal */
 #main-content {
     margin-top: var(--header-height-desktop); /* Usa a variável para a altura do cabeçalho desktop */
 }
@@ -387,7 +386,7 @@ a:focus {
 }
 
 /* ========================================= */
-/* NOVA SEÇÃO: FUNDO PRETO COM LOGOS EM DESTAQUE */
+/* NOVA SEÇÃO: FUNDO PRETO COM LOGOS DE 5 ITENS */
 /* Seção com fundo escuro e 5 logos com efeito. */
 /* ========================================= */
 .new-black-section {
@@ -400,7 +399,6 @@ a:focus {
 }
 
 .new-black-section .container {
-    /* O container já tem margens e padding, mas podemos ajustar para esta seção escura */
     background-color: transparent; /* Remove o fundo branco padrão do .container */
     box-shadow: none; /* Remove a sombra padrão do .container */
     padding: 0; /* Remove padding extra do .container aqui, pois a section já tem padding */
@@ -428,19 +426,20 @@ a:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.08); /* Fundo cinza/branco muito sutil no item */
+    background-color: transparent; /* Fundo transparente */
     border-radius: 10px;
     padding: 10px; /* Espaçamento interno */
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease; /* Adicionado background-color para transição suave */
     cursor: default; /* Indica que não é clicável como um link */
+    outline: none; /* Remove o outline padrão em foco para que a sombra funcione */
 }
 
 .new-logo-item-5 img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: grayscale(70%); /* Logos um pouco cinzas por padrão */
-    opacity: 0.8;
+    filter: grayscale(0%); /* Imagens coloridas por padrão */
+    opacity: 1; /* Opacidade total por padrão */
     transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
 
@@ -449,12 +448,11 @@ a:focus {
 .new-logo-item-5:focus-within { /* focus-within para acessibilidade ao focar o item */
     transform: translateY(-10px); /* Levanta o item um pouco mais */
     box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha mais forte (ajuste opacidade se quiser mais suave) */
-    background-color: rgba(255, 255, 255, 0.15); /* Fundo um pouco mais visível no hover */
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo branco sutil ao passar o mouse */
 }
-.new-logo-item-5:hover img,
-.new-logo-item-5:focus-within img {
-    filter: grayscale(0%); /* Remove o cinza da imagem no hover/focus */
-    opacity: 1; /* Totalmente opaca no hover/focus */
+.new-logo-item-5:not(:hover):not(:focus-within) img {
+    filter: grayscale(70%); /* Deixa as imagens um pouco acinzentadas quando não hover/foco */
+    opacity: 0.8;
 }
 
 /* ========================================= */
@@ -719,7 +717,6 @@ footer a:focus {
     .site-header img {
         max-width: 130px; /* Logo menor em tablets */
     }
-    /* Removido padding-top extra para <a>, centralização é agora padrão */
 
     /* Ajuste de compensação para o cabeçalho fixo em tablets */
     #main-content {
@@ -885,7 +882,6 @@ footer a:focus {
     .site-header img {
         max-width: 100px; /* Logo menor em celulares */
     }
-    /* Removido padding-top extra para <a> */
 
     /* Ajuste de compensação para o cabeçalho fixo em celulares */
     #main-content {
