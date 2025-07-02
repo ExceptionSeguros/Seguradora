@@ -15,10 +15,10 @@
     --box-shadow-medium: rgba(0,0,0,0.15); /* Sombra para elementos em destaque */
     --box-shadow-dark: rgba(0,0,0,0.35); /* Sombra mais pronunciada para pop-ups */
     --transition-speed: 0.3s; /* Velocidade padrão para transições de hover/focus */
-    /* NOVAS VARIÁVEIS: Altura aproximada e exata do cabeçalho */
-    --header-height-desktop: 80px; /* Altura do cabeçalho em desktop: Ajustado para encaixe */
-    --header-height-tablet: 70px; /* Altura do cabeçalho em tablet */
-    --header-height-mobile: 60px; /* Altura do cabeçalho em mobile */
+    /* NOVAS VARIÁVEIS DE ALTURA DO CABEÇALHO (Ajustadas para logo 150px) */
+    --header-height-desktop: 70px; /* Altura do cabeçalho em desktop */
+    --header-height-tablet: 60px; /* Altura do cabeçalho em tablet */
+    --header-height-mobile: 50px; /* Altura do cabeçalho em mobile */
 }
 
 /* ========================================= */
@@ -84,9 +84,8 @@ a:focus {
 /* CABEÇALHO DO SITE: Contém o logotipo      */
 /* ========================================= */
 .site-header {
-    text-align: center; /* Centraliza o logo */
-    /* Padding ajustado para controlar a altura e posicionar o logo mais para baixo */
-    padding: 15px 0 5px 0; /* AUMENTADO PADDING SUPERIOR, DIMINUÍDO INFERIOR */
+    text-align: center; /* Centraliza o logo (mantido, mas flexbox abaixo centraliza melhor) */
+    padding: 10px 0; /* Padding vertical total do cabeçalho */
     background-color: var(--secondary-color); /* Fundo branco para o cabeçalho */
     box-shadow: 0 2px 8px var(--box-shadow-light); /* Sombra sutil abaixo do cabeçalho */
     
@@ -97,28 +96,18 @@ a:focus {
     z-index: 100; /* Garante que o cabeçalho fique acima de outros conteúdos ao rolar */
     /* Altura explícita para evitar layout shifts e garantir compensação precisa */
     height: var(--header-height-desktop); /* Altura fixa baseada na variável */
-    display: flex; /* Para centralizar o logo verticalmente */
-    align-items: center; /* Alinha o logo ao centro vertical */
-    justify-content: center; /* Alinha o logo ao centro horizontal */
-}
-
-/* O link <a> dentro do header também é um flex item, ajuste para que o padding vertical funcione nele */
-.site-header a {
-    display: flex; /* Transforma o link em um container flexível */
-    align-items: center; /* Centraliza o conteúdo (imagem) verticalmente */
-    justify-content: center; /* Centraliza o conteúdo (imagem) horizontalmente */
-    height: 100%; /* Ocupa a altura total do header */
-    width: 100%; /* Ocupa a largura total do header */
-    padding-top: 5px; /* Adiciona um padding extra APENAS na parte de cima do logo para empurrá-lo para baixo */
+    display: flex; /* Transforma o cabeçalho em container flexível */
+    align-items: center; /* Centraliza o conteúdo (logo) verticalmente */
+    justify-content: center; /* Centraliza o conteúdo (logo) horizontalmente */
 }
 
 .site-header img {
-    max-width: 180px; /* LARGURA MÁXIMA DO LOGO. Ajustado para 180px */
+    max-width: 150px; /* LARGURA MÁXIMA DO LOGO. Reduzido para 150px para melhor encaixe */
     height: auto; /* Mantém a proporção da imagem */
-    /* Removido margens auto extras, já que o flexbox do <a> pai fará a centralização */
+    /* Não precisa de margens extras aqui, pois o flexbox do .site-header já centraliza */
 }
 
-/* Compensação para o cabeçalho fixo no conteúdo principal */
+/* Compensação para o cabeçalho fixo no conteúdo principal (AJUSTADO PARA NOVAS ALTURAS) */
 #main-content {
     margin-top: var(--header-height-desktop); /* Usa a variável para a altura do cabeçalho desktop */
 }
@@ -397,6 +386,76 @@ a:focus {
     opacity: 1;
 }
 
+/* ========================================= */
+/* NOVA SEÇÃO: FUNDO PRETO COM LOGOS EM DESTAQUE */
+/* Seção com fundo escuro e 5 logos com efeito. */
+/* ========================================= */
+.new-black-section {
+    background-color: var(--primary-color); /* Fundo preto */
+    padding: 60px 0; /* Espaçamento interno superior e inferior */
+    text-align: center;
+    margin-top: 50px; /* Espaçamento superior da seção */
+    margin-bottom: 50px; /* Espaçamento inferior da seção */
+    overflow: hidden; /* Garante que a sombra não seja cortada */
+}
+
+.new-black-section .container {
+    /* O container já tem margens e padding, mas podemos ajustar para esta seção escura */
+    background-color: transparent; /* Remove o fundo branco padrão do .container */
+    box-shadow: none; /* Remove a sombra padrão do .container */
+    padding: 0; /* Remove padding extra do .container aqui, pois a section já tem padding */
+}
+
+.new-black-section h2 {
+    font-size: 32px;
+    color: var(--secondary-color); /* Título branco para contraste */
+    margin-bottom: 40px;
+}
+
+.new-logo-grid-5 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Espaçamento entre os 5 logos */
+    padding: 0 20px; /* Padding lateral para responsividade */
+}
+
+.new-logo-item-5 {
+    width: 150px; /* Tamanho fixo para cada item, igual ao dos serviços */
+    height: 150px; /* Altura correspondente */
+    flex-shrink: 0; /* Impede que os itens diminuam */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo cinza/branco muito sutil no item */
+    border-radius: 10px;
+    padding: 10px; /* Espaçamento interno */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    cursor: default; /* Indica que não é clicável como um link */
+}
+
+.new-logo-item-5 img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(70%); /* Logos um pouco cinzas por padrão */
+    opacity: 0.8;
+    transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
+}
+
+/* EFEITO DE MOVIMENTO E SOMBRA VERMELHA SUAVE AO PASSAR O MOUSE */
+.new-logo-item-5:hover,
+.new-logo-item-5:focus-within { /* focus-within para acessibilidade ao focar o item */
+    transform: translateY(-10px); /* Levanta o item um pouco mais */
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha mais forte (ajuste opacidade se quiser mais suave) */
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo um pouco mais visível no hover */
+}
+.new-logo-item-5:hover img,
+.new-logo-item-5:focus-within img {
+    filter: grayscale(0%); /* Remove o cinza da imagem no hover/focus */
+    opacity: 1; /* Totalmente opaca no hover/focus */
+}
 
 /* ========================================= */
 /* SEÇÃO DE BENEFÍCIOS                       */
@@ -654,15 +713,13 @@ footer a:focus {
 /* Para telas de TABLETS e CELULARES GRANDES (até 768px de largura) */
 @media (max-width: 768px) {
     .site-header {
-        padding: 10px 0 5px 0; /* Ajuste o padding para tablets */
+        padding: 10px 0; /* Ajuste o padding para tablets */
         height: var(--header-height-tablet); /* Altura fixa para tablets */
     }
     .site-header img {
-        max-width: 150px; /* Logo menor em tablets */
+        max-width: 130px; /* Logo menor em tablets */
     }
-    .site-header a {
-        padding-top: 5px; /* Ajuste o padding extra para tablets */
-    }
+    /* Removido padding-top extra para <a>, centralização é agora padrão */
 
     /* Ajuste de compensação para o cabeçalho fixo em tablets */
     #main-content {
@@ -738,6 +795,20 @@ footer a:focus {
         margin-bottom: 25px;
     }
 
+    /* Nova seção em telas menores */
+    .new-black-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    .new-logo-grid-5 {
+        gap: 20px; /* Espaçamento ajustado */
+    }
+    .new-logo-item-5 {
+        width: 130px; /* Tamanho ajustado para tablets */
+        height: 130px;
+        padding: 8px;
+    }
+
 
     .benefits h2, .form-section h2 {
         font-size: 24px;
@@ -808,16 +879,13 @@ footer a:focus {
 /* Para telas de CELULARES PEQUENOS (até 480px de largura) */
 @media (max-width: 480px) {
     .site-header {
-        padding: 5px 0 3px 0; /* Ajuste o padding para celulares */
+        padding: 8px 0; /* Ajuste o padding para celulares */
         height: var(--header-height-mobile); /* Altura fixa para celulares */
     }
     .site-header img {
-        max-width: 110px; /* Logo menor em celulares */
+        max-width: 100px; /* Logo menor em celulares */
     }
-    .site-header a {
-        padding-top: 3px; /* Ajuste o padding extra para celulares */
-    }
-
+    /* Removido padding-top extra para <a> */
 
     /* Ajuste de compensação para o cabeçalho fixo em celulares */
     #main-content {
@@ -885,6 +953,21 @@ footer a:focus {
         font-size: 20px;
         margin-bottom: 20px;
     }
+
+    /* Nova seção em telas menores */
+    .new-black-section h2 {
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+    .new-logo-grid-5 {
+        gap: 15px; /* Espaçamento ajustado */
+    }
+    .new-logo-item-5 {
+        width: 100px; /* Tamanho ajustado para celulares */
+        height: 100px;
+        padding: 5px;
+    }
+
 
     .benefits h2, .form-section h2 {
         font-size: 20px;
