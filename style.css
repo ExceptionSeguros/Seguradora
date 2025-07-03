@@ -426,10 +426,10 @@ a:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Fundo transparente */
+    background-color: transparent; /* Fundo transparente (sem borda visível) */
     border-radius: 10px;
     padding: 10px; /* Espaçamento interno */
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease; /* Adicionado background-color para transição suave */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     cursor: default; /* Indica que não é clicável como um link */
     outline: none; /* Remove o outline padrão em foco para que a sombra funcione */
 }
@@ -438,22 +438,24 @@ a:focus {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: grayscale(0%); /* Imagens coloridas por padrão */
-    opacity: 1; /* Opacidade total por padrão */
+    filter: grayscale(0%); /* Imagens COLORIDAS por padrão */
+    opacity: 1; /* Opacidade TOTAL por padrão */
     transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
 
-/* EFEITO DE MOVIMENTO E SOMBRA VERMELHA SUAVE AO PASSAR O MOUSE */
+/* EFEITO DE MOVIMENTO E SOMBRA VERMELHA SUAVE AO PASSAR O MOUSE (e FOCO) */
 .new-logo-item-5:hover,
 .new-logo-item-5:focus-within { /* focus-within para acessibilidade ao focar o item */
     transform: translateY(-10px); /* Levanta o item um pouco mais */
-    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha mais forte (ajuste opacidade se quiser mais suave) */
-    background-color: rgba(255, 255, 255, 0.08); /* Fundo branco sutil ao passar o mouse */
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha mais forte (ajuste opacidade para mais suave se quiser) */
+    /* NÃO ALTERA background-color no hover se você quer apenas a sombra */
 }
-.new-logo-item-5:not(:hover):not(:focus-within) img {
-    filter: grayscale(70%); /* Deixa as imagens um pouco acinzentadas quando não hover/foco */
-    opacity: 0.8;
+.new-logo-item-5:hover img, /* Garante que a imagem está normal no hover */
+.new-logo-item-5:focus-within img {
+    filter: grayscale(0%); /* Imagens COLORIDAS no hover/foco */
+    opacity: 1; /* Opacidade TOTAL no hover/foco */
 }
+
 
 /* ========================================= */
 /* SEÇÃO DE BENEFÍCIOS                       */
