@@ -61,7 +61,7 @@ img {
 input:focus,
 select:focus,
 button:focus,
-a:focus { 
+a:focus { /* Inclui links como os botões do carrossel e do WhatsApp popup */
     outline: 2px solid var(--accent-color); /* Foco na cor vermelha do tema */
     outline-offset: 3px; /* Afasta o outline da borda do elemento */
     border-radius: 5px; /* Pequeno arredondamento para o outline se necessário */
@@ -175,7 +175,8 @@ a:focus {
     border-radius: 50px; /* ARREDONDAMENTO DO BOTÃO: Valor alto para formato pílula. */
     cursor: pointer;
     text-decoration: none; /* Remove sublinhado do link */
-    transition: all var(--transition-speed) ease; /* Transição suave para todas as propriedades usando variável */
+    /* A transição aqui é para o efeito de hover nativo do CSS */
+    transition: all var(--transition-speed) ease;
     display: inline-block; /* Garante que padding e margin funcionem corretamente */
     text-align: center; /* Garante que o texto esteja centralizado */
 
@@ -185,18 +186,10 @@ a:focus {
     border: 2px solid var(--accent-color); /* Borda Vermelha */
 }
 
-/* ESTILO DO BOTÃO AO PASSAR O MOUSE OU FOCAR */
+/* ESTILO DO BOTÃO AO PASSAR O MOUSE OU FOCAR (USANDO APENAS CSS NATIVO) */
+/* Isso deve ser consistente para todos os botões que compartilham a classe .carousel-button */
 .carousel-button:hover,
-.carousel-button:focus { 
-    background-color: var(--primary-color); /* Permanece Preto */
-    color: var(--secondary-color); /* Permanece Branco */
-    border-color: var(--accent-color); /* A borda continua Vermelha */
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Sombra que "brilha" em vermelho */
-    transform: translateY(-3px); /* Leve levantamento */
-}
-
-/* ESTILO DO BOTÃO DO SLIDE ATIVO (controlado por JS) */
-.carousel-button.hover-active {
+.carousel-button:focus { /* Adicionado :focus para acessibilidade */
     background-color: var(--primary-color); /* Permanece Preto */
     color: var(--secondary-color); /* Permanece Branco */
     border-color: var(--accent-color); /* A borda continua Vermelha */
@@ -313,8 +306,8 @@ a:focus {
 .partner-item img {
     max-width: 100%; /* Garante que a imagem preencha a largura do contêiner */
     max-height: 100%; /* Garante que a imagem não ultrapasse a altura do contêiner */
-    object-fit: contain; /* Redimensiona a imagem para caber na caixa sem cortar */
-    filter: grayscale(100%); /* Começa em preto e branco para um visual mais clean */
+    object-fit: contain; /* Redimensiona a imagem para caber na caixa sin cortar */
+    filter: grayscale(100%); /* Começa em preto e branco para um visual más clean */
     opacity: 0.7; /* Levemente transparente */
     transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
@@ -327,7 +320,7 @@ a:focus {
 
 /* ========================================= */
 /* NOVA SEÇÃO: GALERIA DE LOGOTIPOS (16 imagens) */
-/* Exibição de múltiplos logotipos sem links. */
+/* Exibição de múltiplos logotipos sin links. */
 /* ========================================= */
 .logo-gallery-section {
     text-align: center;
@@ -347,12 +340,12 @@ a:focus {
     justify-content: center;
     align-items: center;
     gap: 20px; /* Espaçamento entre os logotipos na grade de 16 */
-    padding: 0 10px; /* Padding um pouco menor para acomodar mais itens */
+    padding: 0 10px; /* Padding um pouco menor para acomodar más itens */
 }
 
 .logo-item {
-    width: 120px; /* Tamanho ligeiramente menor para caber mais em uma linha */
-    height: 120px; /* Altura correspondente */
+    width: 120px; /* Tamaño ligeramente menor para caber más en una línea */
+    height: 120px; /* Altura correspondiente */
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -360,21 +353,21 @@ a:focus {
     background-color: var(--secondary-color);
     border-radius: 8px;
     padding: 8px; /* Padding interno menor */
-    box-shadow: 0 2px 6px var(--box-shadow-light); /* Sombra mais suave */
+    box-shadow: 0 2px 6px var(--box-shadow-light); /* Sombra más suave */
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .logo-item:hover,
 .logo-item:focus-within {
-    transform: translateY(-3px); /* Levantamento sutil */
-    box-shadow: 0 4px 10px var(--box-shadow-medium); /* Sombra um pouco mais forte */
+    transform: translateY(-3px); /* Levantamiento sutil */
+    box-shadow: 0 4px 10px var(--box-shadow-medium); /* Sombra un poco más fuerte */
 }
 
 .logo-item img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: grayscale(80%); /* Mais cinza para os logotipos sem link */
+    filter: grayscale(80%); /* Más cinza para os logotipos sin link */
     opacity: 0.8;
     transition: filter var(--transition-speed) ease, opacity var(--transition-speed) ease;
 }
@@ -422,15 +415,15 @@ a:focus {
 .new-logo-item-5 {
     width: 150px; /* Tamanho fixo para cada item, igual ao dos serviços */
     height: 150px; /* Altura correspondente */
-    flex-shrink: 0; /* Impede que os itens diminuam */
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent; /* Fundo transparente (sem borda visível) */
+    background-color: transparent; /* Fundo transparente (sin borda visível) */
     border-radius: 10px;
     padding: 10px; /* Espaçamento interno */
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    cursor: default; /* Indica que não é clicável como um link */
+    cursor: default; /* Indica que no es clicable como un link */
     outline: none; /* Remove o outline padrão em foco para que a sombra funcione */
 }
 
@@ -446,9 +439,8 @@ a:focus {
 /* EFEITO DE MOVIMENTO E SOMBRA VERMELHA SUAVE AO PASSAR O MOUSE (e FOCO) */
 .new-logo-item-5:hover,
 .new-logo-item-5:focus-within { /* focus-within para acessibilidade ao focar o item */
-    transform: translateY(-10px); /* Levanta o item um pouco mais */
-    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha mais forte (ajuste opacidade para mais suave se quiser) */
-    /* NÃO ALTERA background-color no hover se você quer apenas a sombra */
+    transform: translateY(-10px); /* Levanta o item um poco más */
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.4); /* Sombra vermelha más fuerte (ajuste opacidad para más suave si quiere) */
 }
 .new-logo-item-5:hover img, /* Garante que a imagem está normal no hover */
 .new-logo-item-5:focus-within img {
@@ -483,7 +475,7 @@ a:focus {
     border-bottom: none; /* Remove a linha do último item */
 }
 .benefits li::before {
-    content: "✅"; /* ÍCONE DO CHECKLIST. Pode ser substituído por outros emojis ou ícones (ex: "\2705"). */
+    content: "✅"; /* ÍCONE DO CHECKLIST. Pode ser substituído por otros emojis ou ícones (ex: "\2705"). */
     margin-right: 12px;
     color: var(--accent-color); /* Cor do ícone do checklist: Vermelho */
     font-size: 22px; /* TAMANHO DO ÍCONE DO CHECKLIST. */
@@ -515,8 +507,8 @@ a:focus {
     color: var(--dark-gray-text); /* Usando variável para placeholder */
 }
 
-/* Seletor :where para menor especificidade e mais flexibilidade (melhor prática) */
-.form-section button:where([type="submit"]) { 
+/* Seletor :where para menor especificidade e más flexibilidade (melhor prática) */
+.form-section button:where([type="submit"]) {
     background-color: var(--primary-color); /* COR DE FUNDO DO BOTÃO: PRETO */
     color: var(--secondary-color); /* COR DO TEXTO DO BOTÃO: BRANCO */
     padding: 15px;
@@ -556,7 +548,7 @@ footer p:last-child {
 }
 footer a {
     color: var(--secondary-color); /* Garante que links no footer sejam brancos */
-    text-decoration: underline; /* Adiciona sublinhado para indicar que é um link */
+    text-decoration: underline; /* Adiciona sublinhado para indicar que es un link */
     transition: color var(--transition-speed) ease;
 }
 footer a:hover,
@@ -586,14 +578,23 @@ footer a:focus {
     align-items: center;
     gap: 10px; /* Espaçamento entre o ícone e o texto */
     border: none; /* Remove a borda padrão de botões */
-    cursor: pointer; /* Indica que é clicável */
+    cursor: pointer; /* Indica que es clicable */
     transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
+.whatsapp-float.pulse-animation { /* Aplica a animação de pulso */
+    animation: pulse 2s infinite; /* Nome da animação, duração, repetição */
+}
+@keyframes pulse { /* Definição da animação de pulso */
+    0% { transform: scale(1); box-shadow: 0 4px 10px var(--box-shadow-medium); }
+    50% { transform: scale(1.05); box-shadow: 0 4px 20px var(--whatsapp-green); } /* Cresce e brilha */
+    100% { transform: scale(1); box-shadow: 0 4px 10px var(--box-shadow-medium); }
+}
+
 .whatsapp-float:hover,
 .whatsapp-float:focus { /* Adicionado :focus para acessibilidade */
-    background-color: var(--whatsapp-green-hover); /* Verde mais escuro no hover */
+    background-color: var(--whatsapp-green-hover); /* Verde más escuro no hover */
     box-shadow: 0 4px 15px var(--box-shadow-dark);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1); /* Mantém escala normal se animado */
 }
 .whatsapp-float img {
     width: 35px; /* TAMANHO DO ÍCONE DO WHATSAPP. */
@@ -612,7 +613,7 @@ footer a:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75); /* Fundo escurecido e semi-transparente (mais escuro) */
+    background-color: rgba(0, 0, 0, 0.75); /* Fundo escurecido e semi-transparente (más escuro) */
     z-index: 1000; /* Garante que fique acima de tudo, inclusive do botão flutuante */
     justify-content: center;
     align-items: center; /* Centraliza o conteúdo verticalmente */
@@ -629,46 +630,46 @@ footer a:focus {
 
 .whatsapp-popup-content {
     background-color: var(--secondary-color); /* Fundo do pop-up: Branco */
-    padding: 35px; /* Mais padding interno */
-    border-radius: 12px; /* Bordas mais arredondadas */
-    box-shadow: 0 8px 25px var(--box-shadow-dark); /* Sombra mais pronunciada */
+    padding: 35px; /* Más padding interno */
+    border-radius: 12px; /* Bordas más arredondadas */
+    box-shadow: 0 8px 25px var(--box-shadow-dark); /* Sombra más pronunciada */
     text-align: center;
     position: relative;
     max-width: 380px; /* Largura máxima do pop-up */
     width: 90%; /* Responsivo: 90% da largura da tela */
-    transform: translateY(20px); /* Efeito de entrada: começa um pouco abaixo */
+    transform: translateY(20px); /* Efeito de entrada: começa um poco abajo */
     opacity: 0; /* Efeito de entrada: começa invisível */
     transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed) ease-out; /* Transição suave para o pop-up */
 }
 
 .whatsapp-popup-overlay.active .whatsapp-popup-content {
-    transform: translateY(0); /* Sobe para a posição final */
-    opacity: 1; /* Torna visível */
+    transform: translateY(0); /* Sube para la posición final */
+    opacity: 1; /* Torna visible */
 }
 
 .whatsapp-popup-close {
     position: absolute;
-    top: 15px; /* Posição do 'X' */
+    top: 15px; /* Posición del 'X' */
     right: 20px;
-    font-size: 30px; /* Tamanho maior para o 'X' */
+    font-size: 30px; /* Tamaño más grande para el 'X' */
     cursor: pointer;
-    color: var(--medium-gray); /* Cor do 'X' */
-    transition: color var(--transition-speed) ease; /* Transição para o hover */
+    color: var(--medium-gray); /* Color del 'X' */
+    transition: color var(--transition-speed) ease; /* Transición para el hover */
 }
 .whatsapp-popup-close:hover,
 .whatsapp-popup-close:focus { /* Adicionado :focus para acessibilidade */
-    color: var(--primary-color); /* Cor do 'X' no hover: Preto */
+    color: var(--primary-color); /* Color del 'X' en el hover: Preto */
 }
 
 .consultant-info {
-    margin-bottom: 25px; /* Mais espaço abaixo do bloco do consultor */
+    margin-bottom: 25px; /* Más espacio debajo del bloque del consultor */
 }
 
 .consultant-photo {
     width: 90px; /* TAMANHO DA IMAGEM DO CONSULTOR. */
     height: 90px;
     border-radius: 50%; /* Torna a imagem circular */
-    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sin distorcer */
     border: 4px solid var(--accent-color); /* Borda vermelha na imagem do consultor */
     margin: 0 auto 12px auto; /* Centraliza a imagem e adiciona margem inferior */
     display: block;
@@ -722,7 +723,7 @@ footer a:focus {
 
     /* Ajuste de compensação para o cabeçalho fixo em tablets */
     #main-content {
-        margin-top: var(--header-height-tablet); 
+        margin-top: var(--header-height-tablet);
     }
 
     .carousel-container {
@@ -887,7 +888,7 @@ footer a:focus {
 
     /* Ajuste de compensação para o cabeçalho fixo em celulares */
     #main-content {
-        margin-top: var(--header-height-mobile); 
+        margin-top: var(--header-height-mobile);
     }
 
     .carousel-container {
